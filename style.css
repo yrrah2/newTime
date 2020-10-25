@@ -1,0 +1,20 @@
+body {
+	margin: auto;
+	font-family: sans-serif;
+}
+
+.right {
+	float: right;
+}
+
+#menu {
+	background-color: #50c878;
+	overflow: hidden;
+}
+
+#times {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
