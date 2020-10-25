@@ -13,7 +13,7 @@
 *                 Returns array with [null, -1] if the sun never rises, and [-1, null] if the sun never sets.
 */
 
-function suntimes(lat, lng, tz) {
+const suntimes = (lat, lng, tz) => {
     var d = new Date();
     var radians = Math.PI / 180.0;
     var degrees = 180.0 / Math.PI;
