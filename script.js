@@ -17,11 +17,12 @@ console.log("Time Now in decimal: " + time);
 
 if (st[1] > time > st[0]){
   hAfter = time - st[0];
-  console.log("Hours after sunrise: " + hAfter);
+  $("#natural").text("Hours after sunrise: " + hAfter);
 } else if (time > st[1]) {
   hAfter = time - st[1];
-  console.log("Hours after sunset: " + hAfter);
+  $("#natural").text("Hours after sunset: " + hAfter);
 } else {
   hAfter = st[0] - time + 24 - st[1];
-  console.log("Hours after sunset: " + hAfter);
+  $("#natural").text("Hours after sunset: " + hAfter);
 };
+
