@@ -2,10 +2,10 @@ const newTime = (lat, long) => {
     const s = suntimes(lat, long);
     const sAdjusted = [s[0]+3, s[1]+3];
     
-    const dayLength = st[1] - st[0];
+    const dayLength = sAdjusted[1] - sAdjusted[0];
     const hourLength = dayLength / 16;
     
-    console.log("Sunset and sunrise array: " + st);
+    console.log("Sunset and sunrise array: " + sAdjusted);
     return [sAdjusted, hourLength];
 };
 
