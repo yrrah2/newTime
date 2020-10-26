@@ -3,9 +3,12 @@ const newTime = (lat, long) => {
     const sAdjusted = [s[0]+3, s[1]+3];
     
     const dayLength = sAdjusted[1] - sAdjusted[0];
+    const nightLength = 24 - dayLength;
     const hourLength = dayLength / 16;
     
-    console.log("Sunset and sunrise array: " + sAdjusted);
+    console.log("Sunset and sunrise array (i): " + sAdjusted);
+    console.log("Day length (n): " + dayLength / hourLength);
+    console.log("Night length (n): " + nightLength / hourLength);
     return [sAdjusted, hourLength];
 };
 
@@ -17,9 +20,6 @@ const displayTime = (sunArray, hourLength) => {
 
     var time = hh + ( mm + (ss/60) )/60;
 
-    console.log("Time Now: " + hh + ": " + mm);
-    console.log("Time Now in decimal: " + time);
-
     if (time > sunArray[1]){
         hAfter = (time - sunArray[1])/hourLength;
         displayText = "Hours after sunset: "  + hAfter;
@@ -30,8 +30,7 @@ const displayTime = (sunArray, hourLength) => {
         hAfter = (time + 24 - sunArray[1])/hourLength;
         displayText = "Hours after sunset: "  + hAfter;
     };
-
-    console.log(displayText);
+    
     $("#natural").text(displayText);
 }
 
