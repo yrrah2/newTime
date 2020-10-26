@@ -60,13 +60,13 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 }
 
 const pageload = () => {
-	const lat = 9.03;
-	const long = 38.74;
+	var lat = 9.03;
+	var long = 38.74;
 
 	var locationPromise = getLocation();
 	locationPromise
 		.then((loc) => {
-			var [lat, long] = loc;
+			[lat, long] = loc;
 			displayTime(newTime(lat, -long));
 		})
 		.catch((err) => { 
