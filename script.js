@@ -23,40 +23,38 @@ const newTime = (lat, long) => {
     const dayHourLength = dayLength / 16;
     const nightHourLength = nightLength / 16;
     
-    console.log("Sunset and sunrise array (i): " + sAdjusted);
-    console.log("Day length (n): " + dayLength / dayHourLength);
-    console.log("Night length (n): " + nightLength / nightHourLength);
     return [sAdjusted, dayHourLength, nightHourLength];
 };
 
 const displayTime = (sunArray, dayHourLength, nightHourLength) => {
-    var d = new Date();
-    var hh = d.getHours();
-    var mm = d.getMinutes();
-    var ss = d.getSeconds();
+	var d = new Date();
+	var hh = d.getHours();
+	var mm = d.getMinutes();
+	var ss = d.getSeconds();
 
-    var time = hh + ( mm + (ss/60) )/60;
-    var [displayType, natural, work] = ["", 0, 0];
+	var time = hh + ( mm + (ss/60) )/60;
+	var [displayType, natural, work] = ["", 0, 0];
     
-    if (time > sunArray[1]){
-        natural = (time - sunArray[1])/nightHourLength;
-        work = time - sunArray[0];
-        displayType = "night";
-    } else if (time > sunArray[0]) {
-        work = time - sunArray[0];
-        natural = (time - sunArray[0])/dayHourLength;
-        displayType = "day";
-    } else {
-        work = time + 24 - sunArray[0]
-        natural = (time + 24 - sunArray[1])/nightHourLength;
-        displayType = "night";
-    };
+	console.log("Time: " + time);
+	if (time > sunArray[1]){
+		natural = (time - sunArray[1])/nightHourLength;
+		work = time - sunArray[0];
+		displayType = "night";
+	} else if (time > sunArray[0]) {
+		work = time - sunArray[0];
+		natural = (time - sunArray[0])/dayHourLength;
+		displayType = "day";
+	} else {
+		work = time + 24 - sunArray[0]
+		natural = (time + 24 - sunArray[1])/nightHourLength;
+		displayType = "night";
+	};
     
-    var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
-    
-    $("#international").text("International: " + internationalTime);
-    $("#work").text("Work: " + work)
-    $("#natural").text("Natural (" + displayType + "): " + natural);
+	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
+
+	$("#international").text("International: " + internationalTime);
+	$("#work").text("Work: " + work)
+	$("#natural").text("Natural (" + displayType + "): " + natural);
 }
 
 const pageload = () => {
