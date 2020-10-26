@@ -60,19 +60,22 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 }
 
 const pageload = () => {
-    const lat = -43.53;
-    const long = -172.62;
-	
+	const lat = -43.53;
+	const long = -172.62;
+
 	var locationPromise = getLocation();
 	locationPromise
-		.then(function(loc) { console.log(loc); var [latTest, longTest] = loc; })
-		.catch(function(err) { console.log("No location"); });
-    
-	console.log("Lat: " + lat + ", latTest: " + latTest);
-	console.log("Long: " + long + ", longTest: " + longTest);
-    const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
-    
-    displayTime(sunArray, dayHourLength, nightHourLength);
+		.then((loc) => {
+			console.log(loc);
+			var [latTest, longTest] = loc;
+			console.log("Lat: " + lat + ", latTest: " + latTest);
+			console.log("Long: " + long + ", longTest: " + longTest);
+		})
+		.catch((err) => { console.log("No location"); });
+
+	const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
+
+	displayTime(sunArray, dayHourLength, nightHourLength);
 }
 
 window.onload = pageload;
