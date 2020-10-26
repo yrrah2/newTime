@@ -20,22 +20,27 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
     var ss = d.getSeconds();
 
     var time = hh + ( mm + (ss/60) )/60;
-    var [displayType, hAfter] = ["", 0];
+    var [displayType, natural, work] = ["", 0, 0];
     
     if (time > sunArray[1]){
-        hAfter = (time - sunArray[1])/nightHourLength;
+        natural = (time - sunArray[1])/nightHourLength;
+        work = time - sunArray[0];
         displayType = "night";
     } else if (time > sunArray[0]) {
-        hAfter = (time - sunArray[0])/dayHourLength;
+        work = time - sunArray[0];
+        natural = (time - sunArray[0])/dayHourLength;
         displayType = "day";
     } else {
-        hAfter = (time + 24 - sunArray[1])/nightHourLength;
+        work = time + 24 - sunArray[0]
+        natural = (time + 24 - sunArray[1])/nightHourLength;
         displayType = "night";
     };
     
     var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
+    
     $("#international").text("International: " + internationalTime);
-    $("#natural").text("Natural (" + displayType + "): " + hAfter);
+    $("#work").text("Work: " + work)
+    $("#natural").text("Natural (" + displayType + "): " + natural);
 }
 
 const pageload = () => {
