@@ -7,8 +7,8 @@ body {
 	float: right;
 }
 
-#menu {
-	background-color: #50c878;
+.menu {
+	background-color: #3a995a;
 	overflow: hidden;
 }
 
