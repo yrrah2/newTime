@@ -62,6 +62,7 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 const pageload = () => {
 	var lat = 9.03;
 	var long = 38.74;
+	displayTime(newTime(lat, -long));
 
 	var locationPromise = getLocation();
 	locationPromise
@@ -71,7 +72,6 @@ const pageload = () => {
 		})
 		.catch((err) => { 
 			console.log("No location");
-			displayTime(newTime(lat, -long));
 		});
 
 	
