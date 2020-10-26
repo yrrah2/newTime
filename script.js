@@ -68,6 +68,8 @@ const pageload = () => {
 		.then(function(loc) { console.log(loc); var [latTest, longTest] = loc; })
 		.catch(function(err) { console.log("No location"); });
     
+	console.log("Lat: " + lat + ", latTest: " + latTest);
+	console.log("Long: " + long + ", longTest: " + longTest);
     const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
     
     displayTime(sunArray, dayHourLength, nightHourLength);
