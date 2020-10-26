@@ -60,20 +60,17 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 }
 
 const pageload = () => {
-	const lat = -43.53;
-	const long = -172.62;
+	const lat = 9.03;
+	const long = -38.74;
 
 	var locationPromise = getLocation();
 	locationPromise
 		.then((loc) => {
-			console.log(loc);
-			var [latTest, longTest] = loc;
-			console.log("Lat: " + lat + ", latTest: " + latTest);
-			console.log("Long: " + long + ", longTest: " + longTest);
+			var [lat, long] = loc;
 		})
 		.catch((err) => { console.log("No location"); });
 
-	const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
+	const [sunArray, dayHourLength, nightHourLength] = newTime(lat, -long);
 
 	displayTime(sunArray, dayHourLength, nightHourLength);
 }
