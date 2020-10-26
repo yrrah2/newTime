@@ -4,43 +4,47 @@ const newTime = (lat, long) => {
     
     const dayLength = sAdjusted[1] - sAdjusted[0];
     const nightLength = 24 - dayLength;
-    const hourLength = dayLength / 16;
+    const dayHourLength = dayLength / 16;
+    const nightHourLength = nightLength / 16;
     
     console.log("Sunset and sunrise array (i): " + sAdjusted);
-    console.log("Day length (n): " + dayLength / hourLength);
-    console.log("Night length (n): " + nightLength / hourLength);
-    return [sAdjusted, hourLength];
+    console.log("Day length (n): " + dayLength / dayHourLength);
+    console.log("Night length (n): " + nightLength / nightHourLength);
+    return [sAdjusted, dayHourLength, nightHourLength];
 };
 
-const displayTime = (sunArray, hourLength) => {
+const displayTime = (sunArray, dayHourLength, nightHourLength) => {
     var d = new Date();
     var hh = d.getHours();
     var mm = d.getMinutes();
     var ss = d.getSeconds();
 
     var time = hh + ( mm + (ss/60) )/60;
-
+    var [displayType, hAfter] = ["", 0];
+    
     if (time > sunArray[1]){
-        hAfter = (time - sunArray[1])/hourLength;
-        displayText = "Hours after sunset: "  + hAfter;
+        hAfter = (time - sunArray[1])/nightHourLength;
+        displayType = "night";
     } else if (time > sunArray[0]) {
-        hAfter = (time - sunArray[0])/hourLength;
-        displayText = "Hours after sunrise: " + hAfter;
+        hAfter = (time - sunArray[0])/dayHourLength;
+        displayType = "day";
     } else {
-        hAfter = (time + 24 - sunArray[1])/hourLength;
-        displayText = "Hours after sunset: "  + hAfter;
+        hAfter = (time + 24 - sunArray[1])/nightHourLength;
+        displayType = "night";
     };
     
-    $("#natural").text(displayText);
+    var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
+    $("#international").text("International: " + internationalTime);
+    $("#natural").text("Natural (" + displayType + "): " + hAfter);
 }
 
 const pageload = () => {
     const lat = -43.53;
     const long = -172.62;
     
-    const [sunArray, hourLength] = newTime(lat, long);
+    const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
     
-    displayTime(sunArray, hourLength);
+    displayTime(sunArray, dayHourLength, nightHourLength);
 }
 
 window.onload = pageload;
