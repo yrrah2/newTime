@@ -1,3 +1,19 @@
+const getLocation = (callback) => {
+    var promise = new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    resolve([position.coords.latitude, position.coords.longitude])
+                }
+            );
+        } else {
+          reject("Unknown");
+        }
+    });
+
+    return promise;
+}
+
 const newTime = (lat, long) => {
     const s = suntimes(lat, long);
     const sAdjusted = [s[0]+3, s[1]+3];
@@ -46,6 +62,11 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 const pageload = () => {
     const lat = -43.53;
     const long = -172.62;
+	
+	var locationPromise = getLocation();
+	locationPromise
+		.then(function(loc) { console.log(loc); })
+		.catch(function(err) { console.log("No location"); });
     
     const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
     
