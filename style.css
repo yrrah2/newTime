@@ -3,6 +3,10 @@ body {
 	font-family: sans-serif;
 }
 
+input {
+	border: #828282 solid 1px;
+}
+
 .right {
 	float: right;
 }
