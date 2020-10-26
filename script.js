@@ -16,14 +16,14 @@ const displayTime = (sunArray) => {
     console.log("Time Now: " + hh + ": " + mm);
     console.log("Time Now in decimal: " + time);
 
-    if (sunArray[1] > time > sunArray[0]){
-        hAfter = time - sunArray[0];
-        displayText = "Hours after sunrise: " + hAfter;
-    } else if (time > sunArray[1]) {
+    if (time > sunArray[1]){
         hAfter = time - sunArray[1];
         displayText = "Hours after sunset: " + hAfter;
+    } else if (time > sunArray[0]) {
+        hAfter = time - sunArray[0];
+        displayText = "Hours after sunrise: " + hAfter;
     } else {
-        hAfter = sunArray[0] - time + 24 - sunArray[1];
+        hAfter = time + 24 - sunArray[1];
         displayText = "Hours after sunset: " + hAfter;
     };
 
