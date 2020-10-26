@@ -65,7 +65,7 @@ const pageload = () => {
 	
 	var locationPromise = getLocation();
 	locationPromise
-		.then(function(loc) { console.log(loc); })
+		.then(function(loc) { console.log(loc); var [latTest, longTest] = loc; })
 		.catch(function(err) { console.log("No location"); });
     
     const [sunArray, dayHourLength, nightHourLength] = newTime(lat, long);
