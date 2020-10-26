@@ -24,7 +24,7 @@ const displayTime = (sunArray) => {
         displayText = "Hours after sunset: " + hAfter;
     } else {
         hAfter = sunArray[0] - time + 24 - sunArray[1];
-        displayText = "Hours after sunset: " + hAfte;
+        displayText = "Hours after sunset: " + hAfter;
     };
 
     console.log(displayText);
