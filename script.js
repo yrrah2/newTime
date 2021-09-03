@@ -15,49 +15,33 @@ const getLocation = (callback) => {
 }
 
 const newTime = (lat, long) => {
-    const s = suntimes(lat, long, 0);
-    console.log(s[0]);
-    const sAdjusted = [s[0]+3, s[1]+3];
-    
-    const dayLength = sAdjusted[1] - sAdjusted[0];
-    const nightLength = 24 - dayLength;
-    const dayHourLength = dayLength / 16;
-    const nightHourLength = nightLength / 16;
-    
-    return [sAdjusted, dayHourLength, nightHourLength];
+    const sunrise = suntimes(lat, long, 0)[0];
+    console.log(sunrise);
+   
+    return sunrise;
 };
 
-const displayTime = (sunArray, dayHourLength, nightHourLength) => {
+const displayTime = (sunrise) => {
 	var d = new Date();
 	var hh = d.getHours();
 	var mm = d.getMinutes();
 	var ss = d.getSeconds();
 
 	var time = hh + ( mm + (ss/60) )/60;
-	var [displayType, natural, work] = ["", 0, 0];
+	var natural = 0;
     
 	console.log("Time: " + time);
-	if (time > sunArray[1]){
-		natural = (time - sunArray[1])/nightHourLength;
-		work = time - sunArray[0];
-		displayType = "night";
-	} else if (time > sunArray[0]) {
-		work = time - sunArray[0];
-		natural = (time - sunArray[0])/dayHourLength;
-		displayType = "day";
-	} else {
-		work = time + 24 - sunArray[0]
-		natural = (time + 24 - sunArray[1])/nightHourLength;
-		displayType = "night";
-	};
+	
+	natural = time - sunrise;
+	if(natural < 0){natural = natural + 24;};
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 
 	$("#international").text("International: " + internationalTime);
-	$("#natural").text("Natural (" + displayType + "): " + natural);
+	$("#natural").text("Natural : " + natural);
 	
-	$("#sunrise").text("Sunrise: " + sunArray[0]);
-	console.log("Sunrise: " + sunArray[0]);
+	$("#sunrise").text("Sunrise: " + sunrise);
+	console.log("Sunrise: " + sunrise);
 }
 
 const pageload = () => {
