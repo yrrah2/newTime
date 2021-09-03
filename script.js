@@ -53,8 +53,9 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 
 	$("#international").text("International: " + internationalTime);
-	$("#work").text("Work: " + work)
 	$("#natural").text("Natural (" + displayType + "): " + natural);
+	
+	$("#natural").text("Sunrise (" + displayType + "): " + sunArray[0]);
 }
 
 const pageload = () => {
