@@ -55,7 +55,8 @@ const displayTime = (sunArray, dayHourLength, nightHourLength) => {
 	$("#international").text("International: " + internationalTime);
 	$("#natural").text("Natural (" + displayType + "): " + natural);
 	
-	$("#natural").text("Sunrise (" + displayType + "): " + sunArray[0]);
+	$("#sunrise").text("Sunrise: " + sunArray[0]);
+	console.log("Sunrise: " + sunArray[0]);
 }
 
 const pageload = () => {
