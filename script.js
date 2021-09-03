@@ -53,6 +53,7 @@ const pageload = () => {
 	locationPromise
 		.then((loc) => {
 			[lat, long] = loc;
+		console.log("lat: "+lat+", long: "+long);
 			displayTime(newTime(lat, -long));
 		})
 		.catch((err) => { 
