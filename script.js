@@ -16,16 +16,15 @@ const getLocation = (callback) => {
 
 const newTime = (lat, long) => {
     const sunrise = suntimes(lat, long, 0)[0];
-    console.log(sunrise);
    
     return sunrise;
 };
 
 const displayTime = (sunrise) => {
 	var d = new Date();
-	var hh = d.getHours();
-	var mm = d.getMinutes();
-	var ss = d.getSeconds();
+	var hh = d.getUTCHours();
+	var mm = d.getUTCMinutes();
+	var ss = d.getUTCSeconds();
 
 	var time = hh + ( mm + (ss/60) )/60;
 	var natural = 0;
