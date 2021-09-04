@@ -46,7 +46,7 @@ const displayTime = (sunrise) => {
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
-	var sunrise_hour, sunrise_minute = convertTime(sunrise);
+	var [sunrise_hour, sunrise_minute] = convertTime(sunrise);
 	console.log(sunrise_hour+":"+sunrise_minute)
 
 	$("#international").text("International: " + internationalTime);
