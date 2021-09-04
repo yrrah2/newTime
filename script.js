@@ -14,6 +14,16 @@ const getLocation = (callback) => {
     return promise;
 }
 
+const convertTime = (time) => {
+	```Converts a float time into a readable time.
+	e.g. 17.17 --> 17:10```
+	var hour = Math.floor(time);
+	if(hour < 0){hour += 24;};
+	var minute = Math.floor((time - Math.floor(time)) * 60);
+	
+	return [hour, minute];
+}
+
 const newTime = (lat, long) => {
     const sunrise = suntimes(lat, long, 0)[0];
    
@@ -36,9 +46,7 @@ const displayTime = (sunrise) => {
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
-	var sunrise_hour = Math.floor(sunrise);
-	if(sunrise_hour < 0){sunrise_hour += 24;};
-	var sunrise_minute = Math.floor((sunrise - Math.floor(sunrise)) * 60);
+	var sunrise_hour, sunrise_minute = convertTime(sunrise);
 	console.log(sunrise_hour+":"+sunrise_minute)
 
 	$("#international").text("International: " + internationalTime);
