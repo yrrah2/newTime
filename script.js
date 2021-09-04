@@ -14,10 +14,14 @@ const getLocation = (callback) => {
     return promise;
 }
 
-const hourFix = (hour) => {
-	if (hour < 0) { return hour + 24 }
-	else if (hour >= 24) { return hour - 24 }
-	else { return hour };
+const timeFix = (hour, minute) => {
+	if (hour < 0) { hour += 24 }
+	else if (hour >= 24) { hour -= 24 };
+	
+	if (minute<0) { minute += 60 }
+	else if (minute>=60) { minute -= 60 };
+	
+	return [hour, minute];
 };
 
 const convertTime = (time) => {
@@ -27,12 +31,10 @@ const convertTime = (time) => {
 	
 	var minute = Math.floor((time - Math.floor(time)) * 60);
 	
-	return [hourFix(hour), minute];
+	return hourFix(hour, minute);
 }
 
-const newTime = (lat, long) => {
-    return suntimes(lat, long, 0)[0];
-};
+const newTime = (lat, long) => suntimes(lat, long, 0)[0];
 
 const displayTime = (sunrise) => {
 	var d = new Date();
@@ -42,16 +44,16 @@ const displayTime = (sunrise) => {
 
 	var internationalTimeDifference = convertTime(12*24.950833/180); /*24.95 is the longitude of Lake Makgadikgadi, the origin of the human species. 180 is half the degrees of a circle, and 12 is half the hours of the day.*/
 	
-	var [international_hour, international_minute] = [hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]];
+	var [international_hour, international_minute] = hourFix([hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]]);
 	
 	var time = hh + ( mm + (ss/60) )/60;
 	var [natural_hour, natural_minute] = convertTime(time - sunrise);
 	
 	var sunrise_time = convertTime(sunrise);
-	var [sunrise_hour, sunrise_minute] = [hh+sunrise_time[0], mm+sunrise_time[1]];
+	var [sunrise_hour, sunrise_minute] = hourFix([hh+sunrise_time[0], mm+sunrise_time[1]]);
 	
-	$("#international").text("International: " + hourFix(international_hour) + ':' + international_minute);
-	$("#sunrise").text("Sunrise occurs at: " + hourFix(sunrise_hour) + ':' + sunrise_minute+" (INT)");
+	$("#international").text("International: " + international_hour + ':' + international_minute);
+	$("#sunrise").text("Sunrise occurs at: " + sunrise_hour + ':' + sunrise_minute+" (INT)");
 	$("#natural").text("Natural: " + natural_hour + ':' + natural_minute);
 }
 
