@@ -65,7 +65,7 @@ const pageload = () => {
 		.then((loc) => {
 			[lat, long] = loc;
 		console.log("lat: "+lat+", long: "+long);
-			displayTime(newTime(lat, -long));
+			displayTime(newTime(lat, long));
 		})
 		.catch((err) => { 
 			console.log("No location");
