@@ -16,7 +16,8 @@ const getLocation = (callback) => {
 
 const hourFix = (hour) => {
 	if (hour < 0) { return hour + 24 }
-	else if (hour >= 24) { return hour - 24 };
+	else if (hour >= 24) { return hour - 24 }
+	else { return hour };
 };
 
 const convertTime = (time) => {
