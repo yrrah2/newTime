@@ -35,6 +35,10 @@ const displayTime = (sunrise) => {
 	if(natural < 0){natural = natural + 24;};
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
+	
+	var sunrise_hour = 24+ Math.floor(sunrise);
+	var sunrise_minute = Math.floor((sunrise - Math.floor(sunrise)) * 60);
+	console.log(sunrise_hour+":"+sunrise_minute)
 
 	$("#international").text("International: " + internationalTime);
 	$("#natural").text("Natural : " + natural);
