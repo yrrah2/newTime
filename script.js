@@ -32,11 +32,12 @@ const displayTime = (sunrise) => {
 	console.log("Time: " + time);
 	
 	natural = time - sunrise;
-	if(natural < 0){natural = natural + 24;};
+	if(natural < 0){natural += 24;};
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
-	var sunrise_hour = 24+ Math.floor(sunrise);
+	var sunrise_hour = Math.floor(sunrise);
+	if(sunrise_hour < 0){sunrise_hour += 24;};
 	var sunrise_minute = Math.floor((sunrise - Math.floor(sunrise)) * 60);
 	console.log(sunrise_hour+":"+sunrise_minute)
 
