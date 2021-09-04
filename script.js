@@ -27,6 +27,8 @@ const convertTime = (time) => {
 const newTime = (lat, long) => {
     const sunrise = suntimes(lat, long, 0)[0];
    
+    console.log("Sunrise (UTC): "+sunrise);
+	
     return sunrise;
 };
 
@@ -38,8 +40,6 @@ const displayTime = (sunrise) => {
 
 	var time = hh + ( mm + (ss/60) )/60;
 	var natural = 0;
-    
-	console.log("Time: " + time);
 	
 	natural = time - sunrise;
 	if(natural < 0){natural += 24;};
@@ -47,18 +47,17 @@ const displayTime = (sunrise) => {
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
 	var [sunrise_hour, sunrise_minute] = convertTime(sunrise);
-	console.log(sunrise_hour+":"+sunrise_minute)
-
+    	console.log("Readable sunrise (UTC): "+sunrise_hour+':'+sunrise_minute);
+	
 	$("#international").text("International: " + internationalTime);
 	$("#natural").text("Natural : " + natural);
 	
 	$("#sunrise").text("Sunrise: " + sunrise);
-	console.log("Sunrise: " + sunrise);
 }
 
 const pageload = () => {
-	var lat = 9.03;
-	var long = 38.74;
+	var lat = -20.716667;	/* Using the coordinates of the origin of the human species. */
+	var long = 24.950833;	
 	displayTime(newTime(lat, -long));
 
 	var locationPromise = getLocation();
