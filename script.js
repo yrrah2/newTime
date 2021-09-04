@@ -15,8 +15,8 @@ const getLocation = (callback) => {
 }
 
 const convertTime = (time) => {
-	```Converts a float time into a readable time.
-	e.g. 17.17 --> 17:10```
+	/*Converts a float time into a readable time.
+	e.g. 17.17 --> 17:10*/
 	var hour = Math.floor(time);
 	if(hour < 0){hour += 24;};
 	var minute = Math.floor((time - Math.floor(time)) * 60);
