@@ -25,11 +25,7 @@ const convertTime = (time) => {
 }
 
 const newTime = (lat, long) => {
-    const sunrise = suntimes(lat, long, 0)[0];
-   
-    console.log("Sunrise (UTC): "+sunrise);
-	
-    return sunrise;
+    return suntimes(lat, long, 0)[0];
 };
 
 const displayTime = (sunrise) => {
@@ -38,23 +34,22 @@ const displayTime = (sunrise) => {
 	var mm = d.getUTCMinutes();
 	var ss = d.getUTCSeconds();
 
-	var time = hh + ( mm + (ss/60) )/60;
+	var internationalTimeDifference = convertTime(12*24.950833/180); /*24.95 is the longitude of Lake Makgadikgadi, the origin of the human species. 180 is half the degrees of a circle, and 12 is half the hours of the day.*/
 	
+	var [international_hour, international_minute] = [hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]];
+	
+	var time = hh + ( mm + (ss/60) )/60;
 	var [natural_hour, natural_minute] = convertTime(time - sunrise);
-    
-	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
 	var [sunrise_hour, sunrise_minute] = convertTime(sunrise);
-    	console.log("Readable sunrise (UTC): "+sunrise_hour+':'+sunrise_minute);
 	
-	$("#international").text("International: " + internationalTime);
+	$("#international").text("International: " + international_hour + ':' + international_minute);
+	$("#sunrise").text("Sunrise occurs at: " + sunrise_hour + ':' + sunrise_minute+" (UTC)");
 	$("#natural").text("Natural: " + natural_hour + ':' + natural_minute);
-	
-	$("#sunrise").text("Sunrise occurs at: " + sunrise+" (UTC)");
 }
 
 const pageload = () => {
-	var lat = -20.716667;	/* Using the coordinates of the origin of the human species. */
+	var lat = -20.716667;	/* Using the coordinates of Lake Makgadikgadi, the origin of the human species. */
 	var long = 24.950833;	
 	displayTime(newTime(lat, -long));
 
