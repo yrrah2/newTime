@@ -39,10 +39,8 @@ const displayTime = (sunrise) => {
 	var ss = d.getUTCSeconds();
 
 	var time = hh + ( mm + (ss/60) )/60;
-	var natural = 0;
 	
-	natural = time - sunrise;
-	if(natural < 0){natural += 24;};
+	var [natural_hour, natural_minute] = convertTime(time - sunrise);
     
 	var internationalTime = new Date().toLocaleTimeString("en-GB", {timeZone: "Africa/Addis_Ababa"});
 	
@@ -50,9 +48,9 @@ const displayTime = (sunrise) => {
     	console.log("Readable sunrise (UTC): "+sunrise_hour+':'+sunrise_minute);
 	
 	$("#international").text("International: " + internationalTime);
-	$("#natural").text("Natural : " + natural);
+	$("#natural").text("Natural: " + natural_hour + ':' + natural_minute);
 	
-	$("#sunrise").text("Sunrise: " + sunrise);
+	$("#sunrise").text("Sunrise occurs at: " + sunrise+" (UTC)");
 }
 
 const pageload = () => {
