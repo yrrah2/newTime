@@ -27,8 +27,8 @@ const timeFix = (hour, minute) => {
 const timeDifference = (time1, time2) => {
 	/* time1 and time2 are both decimal time values */
 	
-	if (time1 > time2) {return time1 - time2}
-	else if (time1 < time2) {return 24 + time2 - time1}
+	if (time1 > time2) {return time2 - time1}
+	else if (time1 < time2) {return 24 + time1 - time2}
 	else { return 0 };
 };
 
