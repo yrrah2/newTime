@@ -48,5 +48,5 @@ const suntimes = (lat, lng) => {
     var local_rise = delta_j_rise * 24 + 12;
     var local_set = delta_j_set * 24 + 12;
     if (local_rise < 0){local_rise += 24};
-    return [local_rise, local_set];
+    return local_rise;
 }
