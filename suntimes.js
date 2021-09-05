@@ -1,5 +1,5 @@
 /**
-* Calculates sunrise and sunset in local time given latitude, longitude, and tz.
+* Calculates sunrise and sunset in local time given latitude and longitude.
 *
 * Equations taken from:
 * https://en.wikipedia.org/wiki/Julian_day#Converting_Julian_or_Gregorian_calendar_date_to_Julian_Day_Number
@@ -8,12 +8,11 @@
 * @method suntimes
 * @param {Float} lat Latitude of location (South is negative)
 * @param {Float} lng Longitude of location (West is negative)
-* @param {Integer} tz Timezone hour offset. e.g. Pacific/Los Angeles is -8 (Optional, defaults to system timezone)
 * @return {Array} Returns array of length 2 with sunrise and sunset as floats.
 *                 Returns array with [null, -1] if the sun never rises, and [-1, null] if the sun never sets.
 */
 
-const suntimes = (lat, lng, tz) => {
+const suntimes = (lat, lng) => {
     var d = new Date();
     var radians = Math.PI / 180.0;
     var degrees = 180.0 / Math.PI;
@@ -46,8 +45,8 @@ const suntimes = (lat, lng, tz) => {
     var j_rise = j_transit - omega / 360.0;
     var delta_j_set = j_set - j_date;
     var delta_j_rise = j_rise - j_date;
-    var tz_offset = tz === undefined ? -1 * d.getTimezoneOffset() / 60 : tz;
-    var local_rise = delta_j_rise * 24 + (12 - tz_offset);
-    var local_set = delta_j_set * 24 + (12 - tz_offset);
+    var local_rise = delta_j_rise * 24 + 12;
+    var local_set = delta_j_set * 24 + 12;
+    if (local_rise < 0){local_rise += 24};
     return [local_rise, local_set];
 }
