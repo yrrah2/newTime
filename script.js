@@ -24,19 +24,13 @@ const timeFix = (hour, minute) => {
 	return [hour, minute];
 };
 
-/*const timeDifference = (time1, time2) => {
-	/ time1 and time2 are both arrays containing
-	the elements [hour, minute]/
-	let size1 = time1[0]*60 + time1[1];
-	let size2 = time2[0]*60 + time2[1];
+const timeDifference = (time1, time2) => {
+	/* time1 and time2 are both decimal time values */
 	
-	if (size1 > size2) {var large = time1; var small = time2;}
-	else if (size1 < size2) {var large = time2; var small = time1;}
-	else { return [0,0] };
-	
-	if (large[1]==0){}
-};*/
-
+	if (time1 > time2) {return time1 - time2}
+	else if (time1 < time2) {return 24 + time2 - time1}
+	else { return 0 };
+};*
 const convertTime = (time) => {
 	/*Converts a float time into a readable time.
 	e.g. 17.17 --> 17:10*/
@@ -60,7 +54,7 @@ const displayTime = (sunrise) => {
 	var international_time = timeFix(hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]);
 	
 	var time = hh + ( mm + (ss/60) )/60;
-	var [natural_hour, natural_minute] = convertTime(Math.abs(time - sunrise));
+	var [natural_hour, natural_minute] = convertTime(timeDifference(time, sunrise));
 	
 	var sunrise_time = convertTime(sunrise);
 	sunrise_time = timeFix(hh+sunrise_time[0], mm+sunrise_time[1]);
