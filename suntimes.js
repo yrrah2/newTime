@@ -8,8 +8,8 @@
 * @method suntimes
 * @param {Float} lat Latitude of location (South is negative)
 * @param {Float} lng Longitude of location (West is negative)
-* @return {Array} Returns array of length 2 with sunrise and sunset as floats.
-*                 Returns array with [null, -1] if the sun never rises, and [-1, null] if the sun never sets.
+* @return {Float} Returns sunrise as float.
+*                 Returns with null if the sun never rises.
 */
 
 const suntimes = (lat, lng) => {
@@ -41,12 +41,9 @@ const suntimes = (lat, lng) => {
     
     // get times
     var omega = Math.acos( cos_omega ) * degrees;
-    var j_set = j_transit + omega / 360.0;
     var j_rise = j_transit - omega / 360.0;
-    var delta_j_set = j_set - j_date;
     var delta_j_rise = j_rise - j_date;
     var local_rise = delta_j_rise * 24 + 12;
-    var local_set = delta_j_set * 24 + 12;
     if (local_rise < 0){local_rise += 24};
     return local_rise;
 }
