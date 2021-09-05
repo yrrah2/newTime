@@ -45,10 +45,14 @@ const convertTime = (time) => {
 }
 
 const displayTime = (international_time, sunrise_time, natural_time) => {
+	if (international_time[1] < 10){ international_time[1] = '0' + international_time[1] };
+	if (sunrise_time[1] < 10){ sunrise_time[1] = '0' + sunrise_time[1] };
+	if (natural_time[1] < 10){ natural_time[1] = '0' + natural_time[1] };
+		
 	$("#international").text("International: " + international_time[0] + ':' + international_time[1]);
 	$("#sunrise").text("Sunrise occurs at: " + sunrise_time[0] + ':' + sunrise_time[1]);
 	$("#natural").text("Natural: " + natural_time[0] + ':' + natural_time[1]);
-}
+};
 
 const calculateTimes = (lat, long) => {
 
@@ -92,6 +96,6 @@ const pageload = () => {
 		.catch((err) => { 
 			console.log("No location");
 		});
-}
+};
 
 window.onload = pageload;
