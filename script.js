@@ -62,7 +62,7 @@ const calculateTimes = (lat, long) => {
 	let second_utc = d.getUTCSeconds();
 	
 	let time_now_utc = hour_utc + ( minute_utc + (second_utc/60) )/60;
-	let sunrise_utc = suntimes(lat, long)[0];
+	let sunrise_utc = suntimes(lat, long);
 	
 	/*
 	* Find the current time in Lake Makgadikgadi, the origin of the human species.
