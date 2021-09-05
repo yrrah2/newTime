@@ -44,13 +44,13 @@ const displayTime = (sunrise) => {
 
 	var internationalTimeDifference = convertTime(12*24.950833/180); /*24.95 is the longitude of Lake Makgadikgadi, the origin of the human species. 180 is half the degrees of a circle, and 12 is half the hours of the day.*/
 	
-	var international_time = timeFix([hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]]);
+	var international_time = timeFix(hh+internationalTimeDifference[0], mm+internationalTimeDifference[1]);
 	
 	var time = hh + ( mm + (ss/60) )/60;
 	var [natural_hour, natural_minute] = convertTime(time - sunrise);
 	
 	var sunrise_time = convertTime(sunrise);
-	sunrise_time = timeFix([hh+sunrise_time[0], mm+sunrise_time[1]]);
+	sunrise_time = timeFix(hh+sunrise_time[0], mm+sunrise_time[1]);
 	
 	$("#international").text("International: " + international_time[0] + ':' + international_time[1]);
 	$("#sunrise").text("Sunrise occurs at: " + sunrise_time[0] + ':' + sunrise_time[1] + " (INT)");
