@@ -56,6 +56,12 @@ const displayTime = (sunrise) => {
 	
 	var time = hh + ( mm + (ss/60) )/60;
 	var [natural_hour, natural_minute] = convertTime(timeDifference(time, sunrise));
+	console.log("Time: "+time);
+	console.log("sunrise: "+sunrise);
+	console.log("timeDifference: "+timeDifference(time, sunrise));
+	console.log("dif converted: "+convertTime(timeDifference(time, sunrise)));
+	console.log("n_hour: "+natural_hour);
+	
 	
 	var sunrise_time = convertTime(sunrise);
 	sunrise_time = timeFix(hh+sunrise_time[0], mm+sunrise_time[1]);
