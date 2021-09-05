@@ -64,7 +64,7 @@ const displayTime = (sunrise) => {
 	
 	
 	var sunrise_time = convertTime(sunrise);
-	sunrise_time = timeFix(hh+sunrise_time[0], mm+sunrise_time[1]);
+	sunrise_time = timeFix(internationalTimeDifference[0]+sunrise_time[0], internationalTimeDifference[1]+sunrise_time[1]);
 	
 	if (time>sunrise) {var n_hour = international_time[0] - sunrise_time[0]; var n_minute = international_time[1] - sunrise_time[1]; console.log("Natural hour: "+n_hour);}
 	else if (time<sunrise) {}
