@@ -30,7 +30,8 @@ const timeDifference = (time1, time2) => {
 	if (time1 > time2) {return time1 - time2}
 	else if (time1 < time2) {return 24 + time2 - time1}
 	else { return 0 };
-};*
+};
+
 const convertTime = (time) => {
 	/*Converts a float time into a readable time.
 	e.g. 17.17 --> 17:10*/
