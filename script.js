@@ -42,7 +42,7 @@ const convertTime = (time) => {
 	return timeFix(hour, minute);
 }
 
-const newTime = (lat, long) => suntimes(lat, long, 0)[0];
+const newTime = (lat, long) => suntimes(lat, long)[0];
 
 const displayTime = (sunrise) => {
 	var d = new Date();
