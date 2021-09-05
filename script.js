@@ -80,14 +80,14 @@ const calculateTimes = (lat, long) => {
 const pageload = () => {
 	var lat = -20.716667;	/* Using the coordinates of Lake Makgadikgadi, the origin of the human species. */
 	var long = 24.950833;	
-	calculateTimes(lat, long));
+	calculateTimes(lat, long);
 
 	var locationPromise = getLocation();
 	locationPromise
 		.then((loc) => {
 			[lat, long] = loc;
 		console.log("lat: "+lat+", long: "+long);
-			calculateTimes(lat, long));
+			calculateTimes(lat, long);
 		})
 		.catch((err) => { 
 			console.log("No location");
